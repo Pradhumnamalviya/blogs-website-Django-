@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class = "text-uppercase text-warning" style = "letter-spacing: 2px;">category - {{ category }}</h3>
+ 
+  <div class="row mb-2">
+  {% for blogs in posts %} 
+    <div class="col-md-6">
+      <div class="card border-0" >
+        <div class="card-body">
+          <h3>{{ blogs.title }}</h3>
+          <small class="mb-1 text-muted">{{ blogs.created_at | timesince}} | {{ blogs.author }}</small>
+          <p class="card-text">{{ blogs.short_description }}</p>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+
+</div>
+{% endblock %}
