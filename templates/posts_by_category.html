@@ -9,7 +9,7 @@
     <div class="col-md-6">
       <div class="card border-0" >
         <div class="card-body">
-          <h3>{{ blogs.title }}</h3>
+          <h3><a href = "{% url 'blogs' blogs.slug %}" class = "text-dark" >{{ blogs.title }}</a></h3>
           <small class="mb-1 text-muted">{{ blogs.created_at | timesince}} | {{ blogs.author }}</small>
           <p class="card-text">{{ blogs.short_description }}</p>
         </div>

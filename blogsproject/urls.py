@@ -19,12 +19,19 @@ from django.urls import path, include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
-
+from blog_app import views as Blogsappviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.home, name = "home"),
     path('blog_app/',include("blog_app.urls"),),
+    path('blog_app/search/',Blogsappviews.search, name = "search" ),
+    path('blog_app/<slug:slug>/', Blogsappviews.blogs , name = "blogs" ),
+    path('register/', views.register , name = "register"),
+    path('login/', views.login , name = "login"),
+    path('logout/', views.logout , name = "logout"),
+    path('dashboard/',include("dashboard.urls"), ),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

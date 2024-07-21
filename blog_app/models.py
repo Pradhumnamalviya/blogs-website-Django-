@@ -33,3 +33,16 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class aboutus(models.Model):
+    about_us = models.TextField(max_length=500)
+    
+    class Meta:
+        verbose_name_plural = 'about_us'
+
+class Social_link(models.Model):
+    platform = models.CharField(max_length=30)
+    link = models.URLField(max_length=100)
+
+    def __str__(self):
+        return self.platform
