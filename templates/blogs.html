@@ -14,6 +14,7 @@
                     <div class="text-muted fst-italic mb-2">Posted on {{ single_blog.created_at | timesince}} ago by {{ single_blog.author }}</div>
                     <!-- Post category-->
                     <a class="badge bg-primary text-decoration-none text-light" href="">{{ single_blog.category }}</a>
+
                 </header>
                 <!-- Preview image figure-->
                 <figure class="mb-4"><img class="img-fluid rounded" src="{{ single_blog.featured_image.url }}" alt="Image" /></figure>
@@ -21,6 +22,34 @@
                 <section class="mb-5">
                     <p class="fs-5 mb-4">{{ single_blog.short_description }}</p>
                     <p class="fs-5 mb-4">{{ single_blog.blog_body }}</p>
+                    <h4>Comments ({{ comment_count }})</h4>
+                    {% if comments %}
+                       {% for comment in comments %}
+                           <div class="card">
+                               <div class = "card-body">
+                                    <p class = "card-text mb-0 ">{{ comment }}</p>
+                                    <span>
+                                        <small>By {{ comment.user }}</small>
+                                        <small>| By {{ comment.created_at | timesince }} ago </small>
+                                    </span>
+                               </div> 
+                           </div>
+                       {% endfor %}
+                    {% else %}
+                       <p>No comments yet</p>
+                    {% endif %}
+                    <br>
+                    <div class = "form-group">
+                        {% if user.is_authenticated %}
+                        <form action = "" method = "POST">
+                            {% csrf_token %}
+                            <textarea name = "comment" class = "form-control" placeholder = "Write your comment"></textarea>
+                            <input type = "submit" value = "submit" class = "btn btn-primary mt-2">
+                        </form>
+                        {% else %}
+                        <p>Please <span><a href = "{% url 'login' %}">login</a></span> to write a comment</p>
+                        {% endif %}
+                    </div>
                     </section>
             </article>
         </div>

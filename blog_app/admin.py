@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.http import HttpRequest
-from .models import Category, Blog, aboutus, Social_link
+from .models import Category, Blog, aboutus, Social_link, Comment
 
 class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('title',)}
@@ -22,3 +22,5 @@ class aboutusAdmin(admin.ModelAdmin):
 admin.site.register(aboutus, aboutusAdmin)
 
 admin.site.register(Social_link)
+
+admin.site.register(Comment)
